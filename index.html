@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>THE CYBER AWARENESS // TRAINING EDITION</title>
+    <title>THE CYBER AWARENESS - TRAINING EDITION</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         /* --- THEME: DARK CYBER NEWSPAPER --- */
@@ -66,9 +66,9 @@
             border: 1px solid #333;
             box-shadow: 0 0 30px rgba(0,0,0,0.8);
             display: grid;
-            grid-template-rows: auto 1fr auto; /* Header, Content, Footer */
+            grid-template-rows: auto 1fr auto;
             gap: 20px;
-            overflow-y: auto; /* Allow scrolling within the page if needed */
+            overflow-y: auto;
             position: relative;
         }
 
@@ -88,6 +88,7 @@
             text-transform: uppercase;
             text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
             margin: 0;
+            line-height: 1.2;
         }
 
         .edition-info {
@@ -104,18 +105,16 @@
         }
 
         /* --- GRID LAYOUTS --- */
-        /* Front Page Layout */
         .front-page-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 40px;
-            height: 100%;
+            height: auto;
         }
 
-        /* Standard Article Layout */
         .article-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns like a paper */
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: start;
         }
@@ -165,6 +164,8 @@
         /* --- VISUAL ELEMENTS --- */
         .news-img {
             width: 100%;
+            /* Added min-height to prevent collapse if image is loading or broken */
+            min-height: 200px;
             background: #000;
             border: 1px solid #333;
             margin-bottom: 10px;
@@ -175,12 +176,17 @@
             position: relative;
         }
 
-        .news-img img {
+        .news-img img, .news-img video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            
             transition: filter 0.3s;
+        }
+        
+        /* Video specific fit */
+        .news-img video {
+            object-fit: contain; 
+            background: #000;
         }
 
         .news-img:hover img {
@@ -237,7 +243,7 @@
             color: var(--accent-cyan);
         }
 
-        /* --- NAVIGATION (PAGE TURNER) --- */
+        /* --- NAVIGATION --- */
         .page-nav {
             grid-column: 1 / -1;
             border-top: 2px solid #333;
@@ -264,48 +270,84 @@
             border-color: var(--accent-cyan);
         }
 
-        /* --- MOBILE ADAPTIVE --- */
-        @media (max-width: 800px) {
-            .page-sheet { padding: 15px; height: 100vh; border: none; }
-            .front-page-grid, .article-grid { grid-template-columns: 1fr; gap: 20px; }
-            .brand-name { font-size: 2rem; }
-            h1.headline { font-size: 1.8rem; }
-            .news-img { height: 180px; }
-            .sidebar-box { display: none; }
-        }
-
         /* --- SCROLLBAR --- */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: #0a0a0c; }
         ::-webkit-scrollbar-thumb { background: #333; }
 
+        /* --- MOBILE ADAPTIVE FIXES --- */
+        @media (max-width: 800px) {
+            section {
+                padding: 0;
+                height: 100vh;
+            }
+
+            .page-sheet { 
+                padding: 20px; 
+                height: 100%;
+                width: 100%;
+                border: none;
+                border-bottom: 1px solid #333;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .front-page-grid, .article-grid { 
+                display: block; 
+            }
+
+            .brand-name { font-size: 2rem; }
+            h1.headline { font-size: 1.8rem; }
+            .edition-info { flex-direction: column; text-align: center; gap: 5px;}
+            
+            aside { margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
+            .sidebar-box { margin-bottom: 15px; }
+
+            .news-img { 
+                height: auto;
+                width: 100%;
+            }
+            
+            .news-img img {
+                height: 100%;
+                width: 100%;
+            }
+
+            .nav-btn {
+                padding: 12px 15px;
+                font-size: 0.8rem;
+                flex: 1;
+                margin: 0 5px;
+            }
+            
+            p { text-align: left; }
+        }
     </style>
 </head>
 <body>
 
     <div class="newspaper-container" id="mainContainer">
-
+<!-- Designed & Developed by Kuppam Johari-->
         <!-- PAGE 1: FRONT PAGE -->
         <section id="p1">
             <div class="page-sheet">
-                <!-- MASTHEAD -->
                 <header class="masthead">
                     <h1 class="brand-name">THE CYBER AWARENESS</h1>
                     <div class="edition-info">
                         <span>VOL. 2025 // ISSUE 01</span>
-                        <span>MITS Deemed to be University, MADANAPALLE, AP</span>
+                        <span>MITS Deemed to be University</span>
                         <span>AUTHOR: The.Flying.Wolf</span>
                     </div>
                 </header>
 
                 <div class="front-page-grid">
-                    <!-- MAIN STORY -->
                     <article>
                         <h1 class="headline">DIGITAL DEFENSE INITIATIVE LAUNCHED</h1>
                         <p class="lead">In an era of rising cyber crime, awareness is the only firewall that matters. Today we break down the critical pillars of digital survival.</p>
-                        
+           <!-- Designed & Developed by Kuppam Johari-->             
+                        <!-- Main Banner Image -->
                         <div class="news-img">
-                            <img src="imgs/1.jpg" alt="error loading....">
+                            <img src="imgs/1.jpg" alt="Digital Perimeter Illustration">
                         </div>
                         <span class="caption">FIG 1.1: THE DIGITAL PERIMETER</span>
 
@@ -314,7 +356,7 @@
                         </p>
                         
                         <div class="news-img">
-                            <img src="imgs/2.jpg" alt="error loading....">
+                            <img src="imgs/2.jpg" alt="Invisible Threat">
                         </div>
                         <span class="caption">FIG 1.2: THE INVISIBLE THREAT</span>
 
@@ -322,15 +364,13 @@
                             From the <strong>Digital Personal Data Protection Act</strong> in India to global ransomware syndicates, understanding the landscape is the first step to survival.
                         </p>
                         
-                        <!-- ADDED IMAGE PLACEHOLDER FOR FIRST PAGE SPACE -->
                         <div class="news-img">
-                            <img src="imgs/3.jpg" alt="error loading....">
+                            <img src="imgs/3.jpg" alt="Global Threat">
                         </div>
                         <span class="caption">FIG 1.3: GLOBAL THREAT LANDSCAPE</span>
 
                     </article>
 
-                    <!-- SIDEBAR -->
                     <aside>
                         <div class="sidebar-box">
                             <span class="sidebar-title">QUICK STATS</span>
@@ -351,7 +391,7 @@
                         </div>
                         
                         <div class="news-img">
-                            <img src="imgs/3-1.jpg" alt="error loading....">
+                            <img src="imgs/3-1.jpg" alt="Data Security">
                         </div>
                         <span class="caption">SECURE YOUR DATA</span>
                     </aside>
@@ -363,7 +403,7 @@
                 </div>
             </div>
         </section>
-
+<!-- Designed & Developed by Kuppam Johari-->
         <!-- PAGE 2: AUTHENTICATION -->
         <section id="p2">
             <div class="page-sheet">
@@ -380,7 +420,7 @@
                         <h1 class="headline">"12345" IS DEAD: THE RISE OF PASSPHRASES</h1>
                         
                         <div class="news-img">
-                            <img src="imgs/4.jpg" alt="error loading....">
+                            <img src="imgs/4.jpg" alt="Entropy Analysis">
                         </div>
                         <span class="caption">FIG 2.1: ENTROPY ANALYSIS</span>
 
@@ -389,9 +429,12 @@
                         </p>
                         
                         <div class="news-img">
-                            <img src="imgs/5.jpg" alt="error loading....">
+                            <video width="540" controls>
+                                <source src="imgs/pass.mp4" type="video/mp4">
+                                Your browser does not support HTML video.
+                            </video>
                         </div>
-                        <span class="caption">FIG 2.2: SECURE STORAGE</span>
+                        <span class="caption">FIG 2.2: Demo on - Why strong password?</span>
 
                         <p>
                             <strong>The 16-Character Standard:</strong> Brute force algorithms can crack an 8-character password in minutes. A 16-character phrase takes billions of years.
@@ -403,16 +446,19 @@
                         <h1 class="headline">MULTI-FACTOR DEFENSE</h1>
 
                         <div class="news-img">
-                            <img src="imgs/6.jpg" alt="error loading....">
+                            <video width="540" controls>
+                                <source src="imgs/mfa.mp4" type="video/mp4">
+                                Your browser does not support HTML video.
+                            </video>
                         </div>
-                        <span class="caption">FIG 2.3: 2FA WORKFLOW</span>
+                        <span class="caption">FIG 2.3: Demo on - What is MFA?</span>
 
                         <p>
                             <strong>Two-Factor Authentication (2FA)</strong> adds a critical layer. It combines something you <em>know</em> (Password) with something you <em>have</em> (OTP/Phone). This stops 99.9% of automated attacks.
                         </p>
                         
                         <div class="news-img">
-                            <img src="imgs/7.jpg" alt="error loading....">
+                            <img src="imgs/7.jpg" alt="Biometric Auth">
                         </div>
                         <span class="caption">FIG 2.4: BIOMETRIC AUTH</span>
 
@@ -433,7 +479,7 @@
                 </div>
             </div>
         </section>
-
+<!-- Designed & Developed by Kuppam Johari-->
         <!-- PAGE 3: PHISHING -->
         <section id="p3">
             <div class="page-sheet">
@@ -448,37 +494,49 @@
                     <h2 class="subhead">SOCIAL ENGINEERING</h2>
                     <h1 class="headline">DON'T CLICK THAT LINK: ANATOMY OF A SCAM</h1>
                     
-                    <div style="column-count: 2; column-gap: 40px;">
-                        <p class="drop-cap">
-                            Hackers don't hack computers; they hack minds. <strong>Social Engineering</strong> uses fear, urgency, and greed to trick users.
-                        </p>
-                        
-                        <div class="news-img">
-                            <img src="imgs/8.jpg" alt="error loading....">
+                    <div class="article-grid">
+                        <div>
+                            <p class="drop-cap">
+                                Hackers don't hack computers; they hack minds. <strong>Social Engineering</strong> uses fear, urgency, and greed to trick users.
+                            </p>
+                            
+                            <div class="news-img">
+                                <img src="imgs/8.jpg" alt="Phishing Red Flags">
+                            </div>
+                            <span class="caption">FIG 3.1: PHISHING RED FLAGS</span>
+    
+                            <p>
+                                <strong>Phishing</strong> emails often claim your "Account is Suspended" to panic you into clicking. Always check the sender's address (e.g., <code>support@paypa1.com</code> vs <code>paypal.com</code>).
+                            </p>
+    
+                            <div class="news-img">
+                                <video width="540" controls>
+                                    <source src="imgs/phishing.mp4" type="video/mp4">
+                                    Your browser does not support HTML video.
+                                </video>
+                            </div>
+                            <span class="caption">FIG 3.2: DEMO on PHISHING ATTACK </span>
                         </div>
-                        <span class="caption">FIG 3.1: PHISHING RED FLAGS</span>
-
-                        <p>
-                            <strong>Phishing</strong> emails often claim your "Account is Suspended" to panic you into clicking. Always check the sender's address (e.g., <code>support@paypa1.com</code> vs <code>paypal.com</code>).
-                        </p>
                         
-                        <div class="news-img">
-                            <img src="imgs/9.jpg" alt="error loading....">
+                        <div>
+                            <div class="news-img">
+                                <img src="imgs/9.jpg" alt="Phishing Difference">
+                            </div>
+                            <span class="caption">FIG 3.3: PHISHING DIFFERENCE</span>
+    
+                            <p>
+                                <strong>New Threat: Quishing.</strong> Cybercriminals are pasting fake QR code stickers on parking meters and restaurant menus. These codes bypass email filters and deliver malware directly to mobile devices.
+                            </p>
+                            
+                            <div class="news-img">
+                                <img src="imgs/10.jpg" alt="Quishing Phishing">
+                            </div>
+                            <span class="caption">FIG 3.4: QUISHING PHISHING</span>
+    
+                            <p>
+                                <strong>Defense Protocol:</strong> Hover over links before clicking. Verify requests for money via a separate phone call.
+                            </p>
                         </div>
-                        <span class="caption">FIG 3.2: QUISHING ATTACK</span>
-
-                        <p>
-                            <strong>New Threat: Quishing.</strong> Cybercriminals are pasting fake QR code stickers on parking meters and restaurant menus. These codes bypass email filters and deliver malware directly to mobile devices.
-                        </p>
-                        
-                        <div class="news-img">
-                            <img src="imgs/10.jpg" alt="error loading....">
-                        </div>
-                        <span class="caption">FIG 3.3: SMISHING (SMS PHISHING)</span>
-
-                        <p>
-                            <strong>Defense Protocol:</strong> Hover over links before clicking. Verify requests for money via a separate phone call.
-                        </p>
                     </div>
                 </article>
 
@@ -488,7 +546,7 @@
                 </div>
             </div>
         </section>
-
+<!-- Designed & Developed by Kuppam Johari-->
         <!-- PAGE 4: RANSOMWARE & NETWORK -->
         <section id="p4">
             <div class="page-sheet">
@@ -505,18 +563,24 @@
                         <h1 class="headline">RANSOMWARE: THE DIGITAL HOSTAGE</h1>
                         
                         <div class="news-img">
-                            <img src="imgs/11.jpg" alt="error loading....">
+                            <video width="540" controls>
+                                <source src="imgs/ransome.mp4" type="video/mp4">
+                                Your browser does not support HTML video.
+                            </video>
                         </div>
-                        <span class="caption">FIG 4.1: ENCRYPTION PAYLOAD</span>
+                        <span class="caption">FIG 4.1: Demo on - RANSOMWARE</span>
 
                         <p>
                             Ransomware encrypts your data and demands payment. Modern attacks use <strong>Triple Extortion</strong>: Locking data, stealing data, and threatening to leak it publicly.
                         </p>
                         
                         <div class="news-img">
-                            <img src="imgs/12.jpg" alt="error loading....">
+                            <video width="540" controls>
+                                <source src="imgs/ransome1.mp4" type="video/mp4">
+                                Your browser does not support HTML video.
+                            </video>
                         </div>
-                        <span class="caption">FIG 4.2: AIR-GAPPED BACKUP</span>
+                        <span class="caption">FIG 4.2: Demo on - How to tackle RANSOMWARE ?</span>
 
                         <div class="sidebar-box">
                             <span class="sidebar-title">THE 3-2-1 RULE</span>
@@ -533,7 +597,7 @@
                         <h1 class="headline">PUBLIC WI-FI DANGERS</h1>
 
                         <div class="news-img">
-                            <img src="imgs/13.jpg" alt="error loading....">
+                            <img src="imgs/13.jpg" alt="Packet Sniffing">
                         </div>
                         <span class="caption">FIG 4.3: PACKET SNIFFING</span>
 
@@ -541,14 +605,22 @@
                             <strong>Public Wi-Fi is a Trap.</strong> Hackers can intercept data on open networks (Man-in-the-Middle).
                         </p>
                         
-                        <div class="news-img" style="height: 150px;">
-                            <img src="imgs/14.jpg" alt="error loading....">
+                        <div class="news-img">
+                            <img src="imgs/14.jpg" alt="VPN Encryption">
                         </div>
                         <span class="caption">FIG 4.4: VPN ENCRYPTION</span>
 
                         <p>
                             <strong>Solution:</strong> Use a <strong>VPN</strong> to create an encrypted tunnel. Never perform banking transactions on airport or cafe Wi-Fi without protection.
                         </p>
+
+                        <div class="news-img">
+                            <video width="540" controls>
+                                <source src="imgs/wifi.mp4" type="video/mp4">
+                                Your browser does not support HTML video.
+                            </video>
+                        </div>
+                        <span class="caption">FIG 4.4: Demo on - Public WI-FI data theft</span>
                     </article>
                 </div>
 
@@ -574,7 +646,7 @@
                 <div class="article-grid">
                     <article style="border-right: 1px solid #333; padding-right: 20px;">
                         <div class="news-img">
-                            <img src="imgs/16.jpg" alt="error loading....">
+                            <img src="imgs/16.jpg" alt="MFA Fatigue">
                         </div>
                         <span class="caption">FIG 5.1: MFA FATIGUE ATTACK</span>
 
@@ -584,8 +656,8 @@
                             <strong>Incident:</strong> In 2022, a hacker spammed an Uber employee with login notifications at 2 AM. Annoyed, the employee finally clicked "Approve" to stop the noise.
                         </p>
                         
-                        <div class="news-img" style="height: 150px;">
-                            <img src="imgs/17.jpg" alt="error loading....">
+                        <div class="news-img" style="height: auto; aspect-ratio: 16/9;">
+                            <img src="imgs/17.jpg" alt="Notification Spam">
                         </div>
                         <span class="caption">FIG 5.2: NOTIFICATION SPAM</span>
 
@@ -596,7 +668,7 @@
 
                     <article>
                         <div class="news-img">
-                            <img src="imgs/18.jpg" alt="error loading....">
+                            <img src="imgs/18.jpg" alt="Infection Spread">
                         </div>
                         <span class="caption">FIG 5.3: GLOBAL INFECTION SPREAD</span>
 
@@ -606,8 +678,8 @@
                             <strong>Incident:</strong> In 2017, the WannaCry ransomware infected 200,000 computers in 150 countries, crippling the UK's NHS. It exploited a Windows vulnerability that had a patch available months prior.
                         </p>
                         
-                        <div class="news-img" style="height: 150px;">
-                            <img src="imgs/19.jpg" alt="error loading....">
+                        <div class="news-img" style="height: auto; aspect-ratio: 16/9;">
+                            <img src="imgs/19.jpg" alt="Critical Infra">
                         </div>
                         <span class="caption">FIG 5.4: CRITICAL INFRASTRUCTURE HIT</span>
 
@@ -619,33 +691,7 @@
 
                 <div class="page-nav">
                     <button class="nav-btn" onclick="goToPage(3)">&larr; PREV PAGE</button>
-                    <button class="nav-btn" onclick="goToPage(5)">FINAL EXAM &rarr;</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 6: EXAM -->
-        <section id="p6">
-            <div class="page-sheet" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                
-                <div style="border: 4px double var(--accent-cyan); padding: 40px; max-width: 600px;">
-                    <h1 class="headline" style="font-size: 3rem;">SKILL CHECK</h1>
-                    
-                    <div class="news-img" style="height: 200px; margin-bottom: 20px;">
-                        <img src="imgs/20.jpg" alt="error loading....">
-                    </div>
-                    <span class="caption">FIG 6.1: MISSION STATUS</span>
-                    
-                    <div style="margin: 30px 0;">
-                        <p>Proceed to the examination phase to verify your readiness for field operations.</p>
-                    </div>
-
-                    <a href="https://your-exam-link.com" target="_blank" class="nav-btn" style="font-size: 1.5rem; padding: 15px 40px; display: inline-block; text-decoration: none; border: 2px solid var(--accent-cyan); color: var(--accent-cyan);">START EXAM</a>
-                </div>
-
-                <div class="page-nav" style="width: 100%; margin-top: auto;">
-                    <button class="nav-btn" onclick="goToPage(4)">&larr; REVIEW CASES</button>
-                    <span>END OF ISSUE</span>
+                    <!-- <button class="nav-btn" onclick="goToPage(5)">FINAL EXAM &rarr;</button> -->
                 </div>
             </div>
         </section>
@@ -655,10 +701,35 @@
     <script>
         let currentSlide = 0;
         const container = document.getElementById('mainContainer');
-        const totalSlides = 6;
+        const totalSlides = 5;
+
+        // Select all video elements
+        const videos = document.querySelectorAll('video');
+
+        // Add 'play' event listener to each video
+        videos.forEach(video => {
+            video.addEventListener('play', () => {
+                // Pause all other videos when one starts playing
+                videos.forEach(otherVideo => {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();
+                    }
+                });
+            });
+        });
+
+        // Function to stop all playing videos (used when changing pages)
+        function stopAllVideos() {
+            videos.forEach(video => {
+                video.pause();
+            });
+        }
 
         function goToPage(index) {
             if (index >= 0 && index < totalSlides) {
+                // Pause videos before transitioning
+                stopAllVideos();
+                
                 currentSlide = index;
                 container.style.transform = `translateY(-${currentSlide * 100}vh)`;
             }
@@ -670,5 +741,6 @@
             if (e.key === 'ArrowUp') goToPage(currentSlide - 1);
         });
     </script>
+    <!-- Designed & Developed by Kuppam Johari-->
 </body>
 </html>
